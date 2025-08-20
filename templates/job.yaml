@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: example-container
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - some_data.txt
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: container-data
+              mountPath: /some_data.txt
+              subPath: some_data.txt
+      volumes:
+        - name: container-data
+          configMap:
+            name: config
+

@@ -3,8 +3,5 @@ kind: ConfigMap
 metadata:
   name: config
 data:
-  some_data.txt: |
-    Jest to inny tekst 
-    niż ten co był wcześniej.
-    Teraz do tekstu doszło kolejne zdanie
-    
+  some_data.txt: | 
+{{ .Values.config.text | indent 4 }}
