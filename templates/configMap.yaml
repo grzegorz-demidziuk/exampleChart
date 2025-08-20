@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config
-data:
-  some_data.txt: | 
-{{ .Values.config.text | indent 4 }}

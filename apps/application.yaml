@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grzegorz-apps
+  namespace: argocd
+spec:
+  project: grzegorz
+  source:
+    repoURL: https://github.com/grzegorz-demidziuk/exampleChart.git
+    targetRevision: master
+    path: "./example-chart"
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: playground
+  syncPolicy: 
+    automated: {}
+ 
