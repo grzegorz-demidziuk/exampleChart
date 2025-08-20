@@ -7,7 +7,7 @@ spec:
   project: grzegorz
   source:
     repoURL: https://github.com/grzegorz-demidziuk/exampleChart.git
-    targetRevision: master
+    targetRevision: main
     path: "./example-chart"
   destination:
     server: "https://kubernetes.default.svc"
