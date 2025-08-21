@@ -11,13 +11,10 @@ spec:
       containers:
         - name: example-container
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          {{- with .Values.resources }}
           resources:
-            limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
-            requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           livenessProbe:
             exec:
               command:

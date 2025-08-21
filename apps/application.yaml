@@ -9,6 +9,11 @@ spec:
     repoURL: https://github.com/grzegorz-demidziuk/exampleChart.git
     targetRevision: main
     path: "./example-chart"
+    helm:
+      values: |-
+        config:
+          text: |
+            Tekst ten jest zdefiniowany w pliku application.yaml.
   destination:
     server: "https://kubernetes.default.svc"
     namespace: playground
